@@ -29,6 +29,16 @@ if __name__ == '__main__':
     # 0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超限 -4 註冊碼已在線 -5 已過期 -6 使用者餘額不足 -7 使用者無效
     return_value = vlm_obj.user_auth("user", "password")
 
+    # 加密 string encrypt(BYTE type, string src, string key)
+    # type byte 加密算法 0 表示AES算法，1表示MD5算法，src string GUID字串，需要加密的字串，key string 加密鍵值 type 為1(MD5)加密時此參數無意義
+    # 加密結果，GUID格式的字串
+    return_value = vlm_obj.Encrypt(0,'str', '456')
+
+    # 解密 string decrypt(BYTE type, string src, string key)
+    # type byte 加密算法 0 表示AES算法，1表示MD5算法，src string GUID字串，需要加密的字串，key string 加密鍵值 type 為1(MD5)加密時此參數無意義
+    # 解密結果，GUID格式的字串
+    return_value = vlm_obj.decrypt(0,'str', '456')
+
     # 取卡或使用者的使用到期時間。測試卡無到期時間
     return_value = vlm_obj.get_validity()
 

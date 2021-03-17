@@ -85,10 +85,10 @@ class VLM_security:
     def decrypt(self, type, encode_bytes, key):
         '''
 
-        :param type:
-        :param encode_bytes:
-        :param key:
-        :return:
+        :param type:    0 表示AES 算法，1 表示MD5 算法
+        :param encode_bytes:    GUID字串，需要解密的字串 key string 加密鍵值
+        :param key: 為1(MD5) 時此參數無意義
+        :return:    解密結果，GUID格式的字串
         '''
         decrypt = self._dll.Decrypt
         decrypt.restype = c_char_p
