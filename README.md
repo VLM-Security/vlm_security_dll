@@ -62,6 +62,7 @@
 * 取插件的版本號
 
     如果你使用的是普通dll版，此功能函數請參考: 純Dll接口說明-取插件版本。
+    
     return_value = 返回插件版本號。
     ```
     return_value = vlm_obj.get_ver()
@@ -69,6 +70,7 @@
 * 驗證碼模式，驗證註冊碼是否有效。
 
     試用卡：是産品編號，則當作測試 用卡處理。
+    
     return_value = 0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超出數量 -4 註冊碼已在線 -5 已過期
     ```
     return_value = vlm_obj.auth('your register code')
@@ -85,6 +87,7 @@
 * 解密 string decrypt(BYTE type, string src, string key)
 
     對GUID字串進行解密， type byte 加密算法 0 表示AES算法，1表示MD5算法，src string GUID字串，需要加密的字串，key string 加密鍵值 type 為1(MD5)加密時此參數無意義。
+    
     return_value = GUID格式的字串
     ```
     return_value = vlm_obj.decrypt(0,'str', '456')
@@ -115,6 +118,7 @@
 * 檢查是否到了無效狀態
 
     這函數是為無法回響COM事件的語言比如易語言裡使用的，每隔幾秒調用一次，在可以回響COM事件的語言裡無需此函數，回響OnInvalid事件即可。
+    
     return_value = Bool true:有效 false:無效
     ```
     return_value = vlm_obj.is_valid()
