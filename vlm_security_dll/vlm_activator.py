@@ -140,7 +140,7 @@ class VLM_security:
         pwd = ctypes.c_char_p(pwd.encode('utf-8'))
         result = self._dll["UserRegister"](account, pwd, type, bind, multi, point)
         return result
-
+# TODO 46要測試day跟point此參數按引用傳址
     def add_time(self, card: str, buyer: str, super: str, days: int, point: int):
         '''
         給使用者帳號加時或註冊卡加時
@@ -221,19 +221,19 @@ if __name__ == '__main__':
     # 使用者與註冊碼模式，可以獨立使用或者混和
     # 註冊碼模式
     result = Vbox.auth('01264D02-F472-423B-8E1D-6C218DB4C4FF')
-    return_value = Vbox.add_time()
+    # return_value = Vbox.add_time()
     # 使用者模式
     #
-    Vbox.user_register("testvlm", 'bbb123456', 0, 0, 1, 1000)
-    return_value = Vbox.user_auth("test123", "test456")
-    Vbox.change_password("test456", "test789")
-    return_value = Vbox.get_user_type()
-    return_value = Vbox.get_validity()
-    Vbox.update()
-    return_value = Vbox.is_valid()
-    return_value = Vbox.unbind()
-    return_value = Vbox.deduct_point(10)
-    return_value = Vbox.deduct_hour(5)
+    # Vbox.user_register("testvlm", 'bbb123456', 0, 0, 1, 1000)
+    # return_value = Vbox.user_auth("test123", "test456")
+    # Vbox.change_password("test456", "test789")
+    # return_value = Vbox.get_user_type()
+    # return_value = Vbox.get_validity()
+    # Vbox.update()
+    # return_value = Vbox.is_valid()
+    # return_value = Vbox.unbind()
+    # return_value = Vbox.deduct_point(10)
+    # return_value = Vbox.deduct_hour(5)
 
     Vbox.check_correct()
     Vbox.leave_msg(0, "123123123")
