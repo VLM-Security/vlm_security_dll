@@ -6,13 +6,17 @@
 
 
 ## 安裝
-1. 在[VLM官網](https://www.vlm-security.com/)官網，頁面尾端下載開發包。
-    ![](https://i.imgur.com/gIcllmV.png)
+1. [下載開發包](https://sdk.vlm-security.com/)。
+
 
 3. 解壓縮後，將 CallInterface/DLL/Win32/VAuth.dll 複製到 C:\Windows\System32
     ![](https://i.imgur.com/cheIbux.png)
 
-
+1. 將 CallInterface/DLL/Win32/VServerGroup.vnc 複製到 你python的編譯器同層目錄下。
+    舉例：我的是在C:\Users\user1\.virtualenvs\vlm_security_dll_python\Scripts
+    ![](https://i.imgur.com/7vVrwoi.png)
+    
+    ### 注意 ：　其他目錄也有VServerGroup.vnc只能使用這目錄的VServerGroup.vnc
 ## 建立產品
 1. 登入VLM控制台：
     登入程式在開發包裡的 ManageTerminal\Developer Terminal\VLM_Develop.exe
@@ -62,7 +66,6 @@
 * 取插件的版本號
 
     如果你使用的是普通dll版，此功能函數請參考: 純Dll接口說明-取插件版本。
-    
     return_value = 返回插件版本號。
     ```
     return_value = vlm_obj.get_ver()
@@ -70,7 +73,6 @@
 * 驗證碼模式，驗證註冊碼是否有效。
 
     試用卡：是産品編號，則當作測試 用卡處理。
-    
     return_value = 0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超出數量 -4 註冊碼已在線 -5 已過期
     ```
     return_value = vlm_obj.auth('your register code')
@@ -87,7 +89,6 @@
 * 解密 string decrypt(BYTE type, string src, string key)
 
     對GUID字串進行解密， type byte 加密算法 0 表示AES算法，1表示MD5算法，src string GUID字串，需要加密的字串，key string 加密鍵值 type 為1(MD5)加密時此參數無意義。
-    
     return_value = GUID格式的字串
     ```
     return_value = vlm_obj.decrypt(0,'str', '456')
@@ -118,7 +119,6 @@
 * 檢查是否到了無效狀態
 
     這函數是為無法回響COM事件的語言比如易語言裡使用的，每隔幾秒調用一次，在可以回響COM事件的語言裡無需此函數，回響OnInvalid事件即可。
-    
     return_value = Bool true:有效 false:無效
     ```
     return_value = vlm_obj.is_valid()
@@ -129,6 +129,14 @@
     ```
     return_value = vlm_obj.unbind()
     ```
+    
+*  加時
+    
+     return_value = 0 成功 -1 不存在 -7 無效：已被使用或非加時卡（比如:註冊碼）等等
+     ```
+     return_value = vlm_obj.add_time('card_id','user_id','Recommender_id')
+     ```
+    
 * 扣除時間
 
     返回剩餘計數
@@ -168,7 +176,7 @@
 
 *  注意事項
 
-    請在專案個檢察處設定暗樁，請不要把以下的程式碼包裝成函式
+    請在專案個檢察處設定暗樁，請不要把以下的程式碼包裝成函式，並且在一些關鍵的邏輯間，插入以下程式碼
 
     ```
     encode = vlm_obj.get_code()

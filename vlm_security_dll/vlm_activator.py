@@ -140,8 +140,8 @@ class VLM_security:
         pwd = ctypes.c_char_p(pwd.encode('utf-8'))
         result = self._dll["UserRegister"](account, pwd, type, bind, multi, point)
         return result
-# TODO 46要測試day跟point此參數按引用傳址
-    def add_time(self, card: str, buyer: str, super: str, days: int, point: int):
+
+    def add_time(self, card: str, buyer: str, super: str):
         '''
         給使用者帳號加時或註冊卡加時
 
@@ -156,7 +156,10 @@ class VLM_security:
         buyer = ctypes.c_char_p(buyer.encode('utf-8'))
         super = ctypes.c_char_p(super.encode('utf-8'))
 
-        return self._dll["AddTime"](card, buyer, super, days, point)
+        mask = ctypes.c_uint32()
+        net = ctypes.c_int32()
+
+        return self._dll["AddTime"](card, buyer, super, ctypes.byref(net), ctypes.byref(mask))
 
     def unbind(self):
         '''
@@ -212,7 +215,7 @@ class VLM_security:
 
 
 if __name__ == '__main__':
-    Vbox = VLM_security(r"C:\Windows\VAuth.dll", "C06B11AD-D132-4C46-AF01-69A865BA43DE")
+    Vbox = VLM_security(r"C:\Windows\VAuth.dll", "508A142E-83D8-4FCE-A071-825381E9C0E5")
 
     result = Vbox.init()
     if not result:
@@ -220,8 +223,8 @@ if __name__ == '__main__':
     return_value = Vbox.get_ver()
     # 使用者與註冊碼模式，可以獨立使用或者混和
     # 註冊碼模式
-    result = Vbox.auth('01264D02-F472-423B-8E1D-6C218DB4C4FF')
-    # return_value = Vbox.add_time()
+    result = Vbox.auth('279BB3F9-5AB3-4D20-819D-4D24A6408EF0')
+    # return_value = Vbox.add_time("15F8D3F0-474B-4124-B5EF-67B59F15A50A","279BB3F9-5AB3-4D20-819D-4D24A6408EF0","test123")
     # 使用者模式
     #
     # Vbox.user_register("testvlm", 'bbb123456', 0, 0, 1, 1000)
@@ -234,7 +237,10 @@ if __name__ == '__main__':
     # return_value = Vbox.unbind()
     # return_value = Vbox.deduct_point(10)
     # return_value = Vbox.deduct_hour(5)
+    #
 
+
+    print(return_value)
     Vbox.check_correct()
     Vbox.leave_msg(0, "123123123")
     t = Vbox.decrypt(0, Vbox.get_code(), "123")

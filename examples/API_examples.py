@@ -25,8 +25,13 @@ if __name__ == '__main__':
     # 試用卡：是産品編號，則當作測試 用卡處理。0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超出數量 -4 註冊碼已在線 -5 已過期
     return_value = vlm_obj.auth('your register code')
 
+
+    # 給使用者帳號加時或註冊卡加時
+    #0 成功   -1 不存在   -7 無效：已被使用或非加時卡（比如:註冊碼）等等
+    return_value = vlm_obj.add_time('card_id','user_id','Recommender_id')
+
     # 使用者模式，驗證使用者是否有效
-    # 0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超限 -4 註冊碼已在線 -5 已過期 -6 使用者餘額不足 -7 使用者無效
+    #  return_value =  0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超限 -4 註冊碼已在線 -5 已過期 -6 使用者餘額不足 -7 使用者無效
     return_value = vlm_obj.user_auth("user", "password")
 
     # 加密 string encrypt(BYTE type, string src, string key)
