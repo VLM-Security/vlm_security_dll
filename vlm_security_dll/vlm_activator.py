@@ -2,7 +2,7 @@ import os, hashlib, re
 from pathlib import Path
 from ctypes import *
 import ctypes
-
+import shutil
 
 class VLM_security:
     _dll = None
@@ -11,6 +11,14 @@ class VLM_security:
         self._dll_path = dll_path
         self._dll = ctypes.windll.LoadLibrary(dll_path)
         self.soft_code = soft_code
+        self.check_vnc()
+
+
+    def check_vnc(self):
+        path=os.path.dirname(__file__)
+        if not os.path.isfile((os.path.join(path, 'VServerGroup.vnc'))):
+            print('check *.vnc file')
+            exit()
 
     def get_code(self):
         '''
@@ -38,7 +46,9 @@ class VLM_security:
 
         :return:    大於等於0表示成功。（連接了某台伺服器並返回伺服器編號），小於0表示連接失敗。失敗時應提示使用者無法連接驗證服務器並退出程序
         '''
+
         return self._dll["Initialize"](ctypes.c_char_p(self.soft_code.encode('utf-8'))) >= 0
+
 
     def user_auth(self, account: str, pwd: str):
         '''
