@@ -19,10 +19,17 @@
     ### 注意 ：　其他目錄也有VServerGroup.vnc只能使用這目錄的VServerGroup.vnc
 ## 建立產品
 1. 登入VLM控制台：
-    登入程式在開發包裡的 ManageTerminal\Developer Terminal\VLM_Develop.exe
-    ![](https://i.imgur.com/zMH1ZZ6.png)
+    * 登入程式在開發包裡的 VLM 管理端 ManageTerminal\Developer Terminal\VLM_Develop.exe
+    * 打開 VLM 管理端，並且登入您剛剛註冊的帳號密碼
+    ![](https://i.imgur.com/lsfNatC.png)
 1. 建立產品：
-    ![](https://i.imgur.com/9alkhGn.png)
+    * 新建一個產品
+    * 產品編號: 具有唯一性，用於識別產品，也可以做為試用卡號
+    * 產品名稱: 作者自定義，用於識別管理產品
+    * 上傳更新: 支援自動更新，程式需要調用Update 函數，並且攜帶FileReplace.exe
+    ![](https://i.imgur.com/TeiafEd.png)
+
+
 1. 設定產品保護認證加密： 
     * 建立產品後，切換頁籤到保護設定。
     ![](https://i.imgur.com/VGOWLny.png)
@@ -35,10 +42,19 @@
     * 建立認證加密後，切換頁籤到註冊碼。
     ![](https://i.imgur.com/WrlWg5h.png)
     * 選擇你的產品，點選建立，輸入註冊碼的相關參數
-    ![](https://i.imgur.com/0l3cdhK.png)
+    ![](https://i.imgur.com/Lf5HmkA.png)
     * 提交後就會創建相對的註冊碼
     ![](https://i.imgur.com/DaV6TZF.png)
     
+## 用戶模式
+1. 需對應產品管理的充值卡，使用充值卡可以對使用者或者註冊碼添加時間
+
+    ![](https://i.imgur.com/XSmBE8P.png)
+    ![](https://i.imgur.com/D9mJJ41.png)
+
+## 推廣策略
+
+   ![](https://i.imgur.com/cpIuaA7.png)
 
 ## API使用
 
