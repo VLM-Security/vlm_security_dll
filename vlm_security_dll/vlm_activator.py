@@ -1,8 +1,9 @@
-import os, hashlib, re
+import os, hashlib, re,sys
 from pathlib import Path
 from ctypes import *
 import ctypes
 import shutil
+
 
 class VLM_security:
     _dll = None
@@ -13,9 +14,8 @@ class VLM_security:
         self.soft_code = soft_code
         self.check_vnc()
 
-
     def check_vnc(self):
-        path=os.path.dirname(__file__)
+        path = os.path.dirname(sys.executable)
         if not os.path.isfile((os.path.join(path, 'VServerGroup.vnc'))):
             print('check *.vnc file')
             exit()
@@ -49,7 +49,6 @@ class VLM_security:
 
         return self._dll["Initialize"](ctypes.c_char_p(self.soft_code.encode('utf-8'))) >= 0
 
-
     def user_auth(self, account: str, pwd: str):
         '''
         使用者登入驗證
@@ -67,9 +66,9 @@ class VLM_security:
         :param auth_code:   string字串註冊碼，所需驗證的註冊碼。
         :return: 0 成功 -1 失敗 -2 註冊碼被禁用 -3 綁定機器超出數量 -4 註冊碼已在線 -5 已過期
         '''
-        auth_res = self._dll["Auth"](ctypes.c_char_p(auth_code.encode('utf-8')))
+
         self.auth_code = auth_code
-        return auth_res
+        return self._dll["Auth"](ctypes.c_char_p(auth_code.encode('utf-8')))
 
     def auth_trial(self):
         '''
@@ -225,15 +224,20 @@ class VLM_security:
 
 
 if __name__ == '__main__':
+
     Vbox = VLM_security(r"C:\Windows\VAuth.dll", "508A142E-83D8-4FCE-A071-825381E9C0E5")
 
     result = Vbox.init()
     if not result:
         exit()
     return_value = Vbox.get_ver()
+
+    # 測試卡
+    reasylt = Vbox.auth_trial()
     # 使用者與註冊碼模式，可以獨立使用或者混和
     # 註冊碼模式
     result = Vbox.auth('279BB3F9-5AB3-4D20-819D-4D24A6408EF0')
+
     # return_value = Vbox.add_time("15F8D3F0-474B-4124-B5EF-67B59F15A50A","279BB3F9-5AB3-4D20-819D-4D24A6408EF0","test123")
     # 使用者模式
     #
@@ -248,7 +252,6 @@ if __name__ == '__main__':
     # return_value = Vbox.deduct_point(10)
     # return_value = Vbox.deduct_hour(5)
     #
-
 
     print(return_value)
     Vbox.check_correct()
