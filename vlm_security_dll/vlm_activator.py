@@ -15,9 +15,8 @@ class VLM_security:
         self.check_vnc()
 
     def check_vnc(self):
-        path = os.path.dirname(sys.executable)
-        if not os.path.isfile((os.path.join(path, 'VServerGroup.vnc'))):
-            print('check *.vnc file')
+        if not os.path.isfile((os.path.join('C:\\windows\\', 'VAuth.dll'))):
+            print('Please check C:\windows\VAuth.dll  file')
             exit()
 
     def get_code(self):

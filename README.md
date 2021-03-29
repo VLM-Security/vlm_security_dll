@@ -9,8 +9,7 @@
 1. [下載開發包](https://sdk.vlm-security.com/)。
 
 
-3. 解壓縮後，將 CallInterface/DLL/Win32/VAuth.dll 複製到 C:\Windows\System32
-    ![](https://i.imgur.com/cheIbux.png)
+3. 解壓縮後，將 CallInterface/DLL/Win32/VAuth.dll 複製到 C:\Windows\
 
 1. 將 CallInterface/DLL/Win32/VServerGroup.vnc 複製到 你python的編譯器同層目錄下。
     舉例：我的是在C:\Users\user1\.virtualenvs\vlm_security_dll_python\Scripts
