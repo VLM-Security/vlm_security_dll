@@ -1,4 +1,3 @@
-import os, hashlib, re
 from pathlib import Path
 from ctypes import *
 import ctypes
@@ -232,15 +231,20 @@ class VLM_security:
 
 
 if __name__ == '__main__':
+
     Vbox = VLM_security(r"C:\Windows\VAuth.dll", "508A142E-83D8-4FCE-A071-825381E9C0E5")
 
     result = Vbox.init()
     if not result:
         exit()
     return_value = Vbox.get_ver()
+
+    # 測試卡
+    reasylt = Vbox.auth_trial()
     # 使用者與註冊碼模式，可以獨立使用或者混和
     # 註冊碼模式
     result = Vbox.auth('279BB3F9-5AB3-4D20-819D-4D24A6408EF0')
+
     # return_value = Vbox.add_time("15F8D3F0-474B-4124-B5EF-67B59F15A50A","279BB3F9-5AB3-4D20-819D-4D24A6408EF0","test123")
     # 使用者模式
     #

@@ -14,10 +14,12 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/VLM-Security/vlm_security_dll",
     packages=setuptools.find_packages(),
+    # pymodules=[
+    #    "vlm-security-dll"
+    # ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: Environment :: Win32 (MS Windows)",
     ],
     python_requires='>=3.6',
 )
