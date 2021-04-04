@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     # 使用自己的產品編號
     vlm_obj = VLM_security(r"C:\Windows\VAuth.dll", "your product code")
-
+    vlm_obj.rename()
     # 初始化
     # 大於等於0表示成功。（連接了某台伺服器並返回伺服器編號），小於0表示連接失敗。失敗時應提示使用者無法連接驗證服務器並退出程序
     result = vlm_obj.init()

@@ -10,22 +10,28 @@
 
 
 ## 註冊
-1. 在[VLM官網](https://my.vlm-security.com/) ，登入後台的頁面，註冊帳號，並到信箱接收驗證信。
+1. 進入[VLM後台](https://my.vlm-security.com/) ，註冊帳號，並到信箱接收驗證信。
 
 
 ## 安裝
-1. [下載開發包](https://sdk.vlm-security.com/)。
+1 . [下載開發包](https://sdk.vlm-security.com/)。
 
 
-3. 解壓縮後，將 CallInterface/DLL/Win32/VAuth.dll 複製到 C:\Windows\System32
-    ![](https://i.imgur.com/cheIbux.png)
+2 . 解壓縮後，將 CallInterface/DLL/Win32/VAuth.dll 複製到 C:\Windows\System32
 
-1. 將 CallInterface/VServerGroup.vnc 複製到Python的編譯器同層下。
+
+3 . 將 CallInterface/VServerGroup.vnc 複製到Python的編譯器同層下。
+ 
+舉例：我的是在 C:\Users\user1\.virtualenvs\vlm_security_dll_python\Scripts
+
+**注意：其他資料夾也有VServerGroup.vnc只能使用CallInterface的VServerGroup.vnc**
+ 
+4 . 從Pypi 安裝
+
+`pip install vlm-security-dll`
+ 
     
-    舉例：我的是在C:\Users\user1\.virtualenvs\vlm_security_dll_python\Scripts
-    ![](https://i.imgur.com/7vVrwoi.png)
-    
-   _注意 ：　其他資料夾也有VServerGroup.vnc只能使用CallInterface的VServerGroup.vnc_
+   
 ## 建立產品
 1. 登入VLM控制台：
     * 登入程式在開發包裡的 VLM 管理端 ManageTerminal\Developer Terminal\VLM_Develop.exe
@@ -218,5 +224,3 @@
 ![](https://i.imgur.com/wDwgRMD.png)
 1. 提交後就會創建相對的充值卡
 ![](https://i.imgur.com/EdY7OPZ.png)
-
-## 儲值

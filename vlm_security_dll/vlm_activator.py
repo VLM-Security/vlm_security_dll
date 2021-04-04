@@ -214,8 +214,12 @@ class VLM_security:
         '''
         return self._dll.DeductPoint(point)
 
-    def rename(self, dll_name):
-        pass
+    def rename(self, dll_name: str = None):
+        if not dll_name:
+            dll_extension = Path(self._dll_path).stem
+        else:
+            dll_extension = dll_name.replace('.dll')
+        self._dll["Rename"](dll_extension.encode('utf-8'))
 
     def leave_msg(self, type, msg):
         '''

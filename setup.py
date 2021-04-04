@@ -9,7 +9,7 @@ setuptools.setup(
     version="0.0.2",
     author="VLM-Security",
     author_email="service@vlm-security.com",
-    description="VLM-Security python SDK",
+    description="VLM-Security Python SDK",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/VLM-Security/vlm_security_dll",
@@ -17,7 +17,7 @@ setuptools.setup(
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        "Operating System :: Environment :: Win32 (MS Windows)",
     ],
     python_requires='>=3.6',
 )
